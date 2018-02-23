@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!--<Resource id="JTA-Connection" type="DataSource">
+        JdbcDriver com.mysql.cj.jdbc.Driver
+        JdbcUrl jdbc:mysql://mysql-database:3306/rdesk
+        connectionProperties = [autoReconnect=true,autoReconnectForPools=true]
+        testOnBorrow = true
+        UserName mahsom
+        Password mypass
+        maxIdle 25
+        maxActive 10
+        JtaManaged true
+    </Resource>
+    <Resource id="None-JTA-Connection" type="DataSource">
+        JdbcDriver com.mysql.cj.jdbc.Driver
+        JdbcUrl jdbc:mysql://mysql-database:3306/rdesk
+        UserName mahsom
+        Password mypass
+        JtaManaged false
+        maxIdle 25
+        maxActive 10
+    </Resource>-->
+
+    <Resource id="JTA-Connection" type="DataSource">
+        JdbcDriver oracle.jdbc.OracleDriver
+        JdbcUrl jdbc:oracle:thin:@localhost:1521:orcl
+        connectionProperties = [autoReconnect=true,autoReconnectForPools=true]
+        testOnBorrow = true
+        UserName mahsom
+        Password mypass
+        maxIdle 25
+        maxActive 10
+        JtaManaged true
+    </Resource>
+    <Resource id="None-JTA-Connection" type="DataSource">
+        JdbcDriver oracle.jdbc.OracleDriver
+        JdbcUrl jdbc:oracle:thin:@localhost:1521:orcl
+        UserName mahsom
+        Password mypass
+        JtaManaged false
+        maxIdle 25
+        maxActive 10
+    </Resource>
+
+
+</resources>

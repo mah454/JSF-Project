@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+           dataSourceName="None-JTA-Connection"
+           userTable="USERS"
+           userNameCol="username"
+           userCredCol="password"
+           userRoleTable="REALM"
+           roleNameCol="role_name"/>
+</Context>

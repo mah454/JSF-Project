@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template/layout.xhtml">
+    <ui:define name="content">
+        <h:form>
+
+            <p:growl delay="3000" redisplay="true" autoUpdate="true"/>
+            <div class="card">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <p:commandButton value="Add"
+                                         update="dialog"
+                                         immediate="true"
+                                         oncomplete="PF('dialog').show()">
+                            <f:actionListener binding="#{userManager.reset()}"/>
+                            <f:actionListener binding="#{actionModifier.setActionType('Create')}"/>
+                            <p:resetInput target="dialog"/>
+                        </p:commandButton>
+                    </div>
+                </div>
+
+                <!--  Information Dialog -->
+                <p:dialog header="Add new user"
+                          id="dialog"
+                          widgetVar="dialog"
+                          modal="true"
+                          height="250"
+                          width="430"
+                          resizable="false"
+                          showEffect="fade" hideEffect="fade" responsive="true">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Username:" for="username"/>
+                        <p:inputText value="#{userManager.user.username}"
+                                     id="username"
+                                     required="true" requiredMessage="#{jm.usernameRequired}"/>
+
+                        <p:outputLabel value="Password:" for="password"/>
+                        <p:password value="#{userManager.user.password}"
+                                    id="password"
+                                    redisplay="true"
+                                    match="confirm_password"
+                                    required="true" requiredMessage="#{jm.passwordRequired}"/>
+
+                        <p:outputLabel value="confirm password:" for="confirm_password"/>
+                        <p:password value="#{userManager.user.password}"
+                                    id="confirm_password"
+                                    redisplay="true"
+                                    required="true" requiredMessage="#{jm.passwordRequired}"/>
+
+                        <p:outputLabel value="Active:" for="active"/>
+                        <p:selectBooleanCheckbox value="#{userManager.user.active}" id="active"/>
+
+                        <p:outputLabel value="Expire:" for="expire_date"/>
+                        <p:calendar value="#{userManager.user.expireDate}" id="expire_date"/>
+
+                        <h:outputLabel for="multiple" value="Permission:"/>
+                        <p:selectCheckboxMenu id="multiple"
+                                              value="#{userManager.selectedRoles}"
+                                              label="Permissions"
+                                              converter="roleConverter"
+                                              multiple="true"
+                                              panelStyle="width:250px">
+                            <f:selectItems value="#{userManager.currentRoles}" var="role" itemValue="#{role}"
+                                           itemLabel="#{role.roleName}"/>
+                        </p:selectCheckboxMenu>
+                    </h:panelGrid>
+                    <p:spacer/>
+                    <p:separator/>
+
+                    <c:set var="action" value="#{actionModifier.actionType}"/>
+                    <p:commandButton id="btnAction"
+                                     process="dialog"
+                                     update="@parent table"
+                                     value="#{action}"
+                                     oncomplete="PF('dialog').hide()"
+                                     action="#{userManager.execute}"/>
+                </p:dialog>
+
+                <p:dataTable id="table"
+                             var="user"
+                             value="#{userManager.userList}"
+                             rows="10"
+                             rowKey="#{user.id}"
+                             selectionMode="single"
+                             selection="#{userManager.user}">
+                    <p:column headerText="Username" sortBy="#{user.id}">
+                        <h:outputText value="#{user.username}"/>
+                    </p:column>
+                    <p:column headerText="Active" sortBy="#{user.active}">
+                        <h:outputText value="#{user.active}"/>
+                    </p:column>
+                    <p:column headerText="Expire Date" sortBy="#{user.expireDate}">
+                        <h:outputText value="#{user.expireDate}"/>
+                    </p:column>
+                </p:dataTable>
+
+                <p:contextMenu for="table">
+                    <p:menuitem value="Update"
+                                update="dialog"
+                                icon="ui-icon-search"
+                                process="@this,table"
+                                actionListener="#{actionModifier.setActionType('Update')}"
+                                oncomplete="PF('dialog').show()"/>
+                    <p:menuitem value="Delete"
+                                icon="ui-icon-close"
+                                update="table"
+                                process="@this,table"
+                                action="#{userManager.removeUser}"/>
+                </p:contextMenu>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

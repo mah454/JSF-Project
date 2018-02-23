@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <div class="branding">
+        <h:graphicImage library="images" name="menu_rdesk-logo.png" styleClass="logo"/>
+    </div>
+    <h:form>
+        <c:set var="current_page" value="#{view.viewId}"/>
+        <ul>
+            <c:choose>
+                <c:when test="#{request.isUserInRole('dashboard')}">
+                    <li class="#{current_page eq '/panel/dashboard.xhtml' ? 'ui-sidebar-active' : ''}">
+                        <p:link outcome="dashboard">
+                            <span class="fa fa-home"/>
+                            <span class="text">Dashboard</span>
+                        </p:link>
+                    </li>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="#{request.isUserInRole('userManager')}">
+                    <li class="#{current_page eq '/panel/users.xhtml' ? 'ui-sidebar-active' : ''}">
+                        <p:link outcome="users">
+                            <span class="fa fa-users"/>
+                            <span class="text">Users</span>
+                        </p:link>
+                    </li>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test="#{request.isUserInRole('settings')}">
+                    <li class="#{current_page eq '/panel/settings.xhtml' ? 'ui-sidebar-active' : ''}">
+                        <p:link outcome="settings">
+                            <span class="fa fa-cogs"/>
+                            <span class="text">Settings</span>
+                        </p:link>
+                    </li>
+                </c:when>
+            </c:choose>
+        </ul>
+    </h:form>
+</ui:composition>

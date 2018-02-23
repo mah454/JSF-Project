@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/WEB-INF/template/layout.xhtml">
+
+    <ui:define name="content">
+        <c:choose>
+            <c:when test="#{request.isUserInRole('dashboard')}">
+                <h:outputText value="Dashboard Loaded ..."/>
+            </c:when>
+            <c:otherwise>
+                <h:outputText value="Access Denied" style="font-size: 55px"/>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+</ui:composition>

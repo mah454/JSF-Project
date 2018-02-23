@@ -1,0 +1,153 @@
+html, body {
+    font-family: "latoregular", "Trebuchet MS", Arial, Helvetica, sans-serif;
+    background-color: silver;
+    color: #676a6c;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.box {
+    border: 1px dotted red;
+}
+
+#side-menu {
+    width: 220px;
+    background-color: #2e363f;
+    padding: 0;
+}
+
+#side-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#side-menu ul li {
+    border-top: 1px solid #37414b;
+    border-bottom: 1px solid #1f262d;
+}
+
+#side-menu a {
+    padding: 15px 10px 20px 15px;
+    text-decoration: none;
+    color: #9fb1c2;
+    font-size: 13px;
+    display: block;
+}
+
+#side-menu a:hover {
+    color: white;
+    background-color: #27a9e3;
+    transition: 0.4s;
+}
+
+#side-menu .ui-sidebar-active a {
+    color: white;
+    background-color: #27a9e3;
+    border-top: 1px solid #27a9e3;
+}
+
+#side-menu .fa {
+    margin-right: 8px;
+}
+
+#side-menu .branding {
+    height: 80px;
+    text-align: center;
+    display: block;
+    background: #1f262d;
+}
+
+#side-menu .branding .logo {
+    margin-top: 20px;
+    width: 180px;
+}
+
+.display-table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.display-table-row {
+    display: table-row;
+    padding: 0;
+    width: 100px;
+}
+
+.display-table-cell {
+    padding: 0;
+    display: table-cell;
+    height: 100%;
+}
+
+.valign-top {
+    vertical-align: top;
+}
+
+header {
+    background-color: #1f262d;
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header ul li {
+    border-left: 1px solid #37414b;
+    border-right: 1px solid #1f262d;
+    font-size: 12px;
+    float: right;
+    padding: 0 8px;
+}
+
+header ul li:hover {
+    transition: 0.6s;
+    background-color: black;
+}
+
+header ul li a:hover {
+    transition: 0.4s;
+    color: snow;
+}
+
+header ul .fa {
+    color: #5c5f63;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #9fb1c2;
+    padding: 15px 3px;
+    display: block;
+}
+
+.card {
+    background-color: snow;
+    /*margin: 5px;*/
+    padding: 12px;
+}
+
+@media all and (max-width: 980px) {
+
+    #side-menu {
+        /*display: inherit;*/
+        width: 45px;
+    }
+
+    #side-menu ul li .text {
+        display: none;
+    }
+
+    #side-menu .branding {
+        height: 50px;
+    }
+
+    #side-menu .branding .logo {
+        display: none;
+    }
+}

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Title</title>
+    <h:outputStylesheet library="css" name="login.css" target="head"/>
+</h:head>
+<h:body>
+    <div class="wrapper">
+        <p:graphicImage value="#{request.contextPath}/resources/images/rdesk-logo-circle.png" alt="Rdesk"
+                        styleClass="logo"/>
+
+        <h:form>
+            <h:selectOneMenu value="#{localeController.localeCode}" onchange="submit()"
+                             valueChangeListener="#{localeController.countryLocaleCodeChanged}">
+                <f:selectItems value="#{localeController.countriesInMap}"/>
+            </h:selectOneMenu>
+        </h:form>
+
+        <h:form>
+            <p:growl delay="3000" redisplay="true"/>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <p:inputText value="#{authController.user.username}" placeholder="#{jm.username}" required="true"
+                             requiredMessage="#{jm.usernameRequired}"/>
+            </div>
+
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+                <p:password value="#{authController.user.password}" placeholder="#{jm.password}" required="true"
+                            requiredMessage="#{jm.passwordRequired}"/>
+            </div>
+            <p:commandButton value="#{jm.loginBtn}" action="#{authController.login()}" icon="fa fa-sign-in"
+                             styleClass="login-button"/>
+            <h:link value="#{jm.haveNotAccount}" styleClass="register-link"/>
+        </h:form>
+    </div>
+</h:body>
+</html>
